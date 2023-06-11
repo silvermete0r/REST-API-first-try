@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset='utf-8'>
+    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+    <title>Health Expense Predictor</title>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+    <link rel='stylesheet' type='text/css' href='../static/style.css'>
+    <link rel='icon' href='https://www.freepnglogos.com/uploads/medicine-logo-png-1.png'>
+
+    <!-- Bootstrap CDN -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz" crossorigin="anonymous"></script>
+</head>
+
+<body>
+    <div class="login">
+        <h1 id="title">Healthcare Expense Predictor<br>ML Flask WebApp</h1>
+        <form action="{{ url_for('predict')}}" method="post">
+            <div class="form-group">
+                <label for="age">Age: </label>
+                <input type="text" name="age" placeholder="age" required="required" class="form-control">
+            </div>
+            <div class="form-group">
+                <label for="bmi">BMI: </label>
+                <input type="text" class="form-control" name="bmi" placeholder="bmi" required="required">
+            </div>
+            <div class="form-group">
+                <label for="children">Children: </label>
+                <select id="children" class="form-control" name="children" , placeholder="children" , required="required">
+                    <option value="0">Not Applicable</option>
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                    <option value="5">5 & above</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="Sex">Sex: </label>
+                <select id="Sex" class="form-control" name="Sex" placeholder="Sex" , required="required">
+                    <option value="0">Male</option>
+                    <option value="1">Female</option>
+                </select>
+                <label for="Smoker">Smoker: </label>
+                <select id="Smoker" class="form-control" name="Smoker" , placeholder="Smoker" , required="required">
+                    <option value="0">No</option>
+                    <option value="1">Yes</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="Region">Region: </label>
+                <select id="Region" class="form-control" name="Region" , placeholder="Region" , required="required">
+                    <option value="0">Northeast</option>
+                    <option value="1">Northwest</option>
+                    <option value="2">Southeast</option>
+                    <option value="3">Southwest</option>
+                </select>
+            </div>
+            <button type="submit" class="btn btn-primary">Predict Medical Charges</button>
+        </form>
+        {% if prediction_val %}
+            <h1 id="result"><span>Your annual Healthcare Expense:</span> {{ prediction_val }}</h1>
+        {% endif %}
+    </div>
+</body>
+
+</html>
